@@ -8,27 +8,32 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
-
 @Component
-public class UserInfoUtil
-{
-    private Logger logger= LoggerFactory.getLogger(UserInfoUtil.class);
+public class UserInfoUtil {
+    private Logger logger = LoggerFactory.getLogger(UserInfoUtil.class);
 
-    public String getPreferredUsername(HttpServletRequest httpServletRequest)
-    {
-        AccessToken accessToken=getAccessToken();
+    public String getPreferredUsername(HttpServletRequest httpServletRequest) {
+        AccessToken accessToken = getAccessToken();
         /*
-
-                KeycloakAuthenticationToken keycloakAuthenticationToken= (KeycloakAuthenticationToken) httpServletRequest.getUserPrincipal();
-                logger.info("Subject: {}",keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken().getSubject());
-        */
+         * 
+         * KeycloakAuthenticationToken keycloakAuthenticationToken=
+         * (KeycloakAuthenticationToken) httpServletRequest.getUserPrincipal();
+         * logger.info("Subject: {}",keycloakAuthenticationToken.getAccount().
+         * getKeycloakSecurityContext().getToken().getSubject());
+         */
         return accessToken.getPreferredUsername();
     }
-    public String getUserGuid()
-    {
+
+    public String getUserGuid() {
         return getAccessToken().getSubject();
+    }
+
+    public Map<String, Object> getAttributes() {
+        return getAccessToken().getOtherClaims();
     }
 
 

@@ -21,7 +21,6 @@ services:
   keycloak:
       image: jboss/keycloak
       container_name: keycloak
-      command: -Dkeycloak.profile=preview
       environment:
         DB_VENDOR: MYSQL
         DB_ADDR: mysql
@@ -36,4 +35,21 @@ services:
       depends_on:
         - mysql
 
-
+  elasticsearch:
+      image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+      container_name: elasticsearch
+      volumes:
+        - es-vol:/usr/share/elasticsearch/data/
+      environment:
+        - discovery.type=single-node
+      ports: 
+        - 9200:9200
+      
+ 
+  kibana:
+      image: docker.elastic.co/kibana/kibana:7.8.0
+      container_name: kibana
+      depends_on:
+        - elasticsearch
+      ports:
+        - 5601:5601
