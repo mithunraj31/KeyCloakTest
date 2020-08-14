@@ -28,7 +28,7 @@ public class Employee extends UserProfile implements Serializable
 
     @ManyToMany
     @JoinTable(name = "employee_project",
-            joinColumns = @JoinColumn(name = "employee_id",referencedColumnName = "employee_id"),
+            joinColumns = @JoinColumn(name = "employee_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"))
     private Set<Project> projects=new HashSet<>();
 

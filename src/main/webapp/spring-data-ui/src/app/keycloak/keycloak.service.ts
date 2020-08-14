@@ -27,12 +27,17 @@ export class KeycloakService
       this.keycloakAuth.init({onLoad: 'login-required'})
           .success(() =>
           {
+            this.keycloakAuth.loadUserProfile().success(profile => {
+              // console.log(profile); 
+             })
             resolve();
           })
           .error(() =>
           {
             reject();
           });
+
+         
     });
   }
 

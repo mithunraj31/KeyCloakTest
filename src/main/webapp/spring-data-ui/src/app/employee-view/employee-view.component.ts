@@ -61,6 +61,7 @@ export class EmployeeViewComponent implements OnInit
           });
         this.ngxSpinnerService.hide();
         this.activatedRoute.snapshot.params.editMode=='true'?this.editMode=true:this.editMode=false;
+        console.log(data);
       },
       error1 =>
       {

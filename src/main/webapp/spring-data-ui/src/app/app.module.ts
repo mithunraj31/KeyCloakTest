@@ -12,7 +12,7 @@ import {EmployeeViewComponent} from "./employee-view/employee-view.component";
 import {TokenInterceptor} from "./interceptors/token-interceptor";
 import {KeycloakService} from "./keycloak/keycloak.service";
 import {LogoutComponent} from "./logout/logout.component";
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 export function kcFactory(keycloakService: KeycloakService) {
   return () => keycloakService.init();
 }
@@ -29,7 +29,8 @@ export function kcFactory(keycloakService: KeycloakService) {
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [KeycloakService,
     {
